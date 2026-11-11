@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.dcm
+*.dicom
+*.nii
+*.nii.gz
+private-scans/
+deidentified-scans/
+.claude/settings.local.json
+__pycache__/
+.pytest_cache/
