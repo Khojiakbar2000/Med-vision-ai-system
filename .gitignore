@@ -7,6 +7,6 @@ dist/
 *.nii.gz
 private-scans/
 deidentified-scans/
-.claude/settings.local.json
+.claude/
 __pycache__/
 .pytest_cache/
