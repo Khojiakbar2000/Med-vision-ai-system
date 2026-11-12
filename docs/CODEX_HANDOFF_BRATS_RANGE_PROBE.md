@@ -59,6 +59,10 @@ Do not print the signed URL or raw exceptions. The current temporary client path
 4. Extract outside the repository, validate labels and image/reference geometry, then create patient-separated training, validation, and untouched evaluation manifests.
 5. Run only a minimal real-data preprocessing/training sanity check. Label any evaluation exploratory unless cohort independence from the original MONAI training data is established.
 
-## Git workspace note
+## Git workflow for this repository
 
-The workspace had numerous unrelated modified and untracked files when this note was created. Commit/push only this handoff file unless the user separately asks to include other changes.
+Make and push task commits on `develop` first. Then switch to `master`, merge `develop` into `master`, and push `master`. Keep unrelated working-tree changes out of the commits. Do not push directly to `master` unless the user explicitly asks for a different workflow.
+
+## Workspace note
+
+The original checkout had numerous unrelated modified and untracked files. This handoff should be committed on `develop`, then carried into `master` by merging `develop`; do not stage unrelated files.
