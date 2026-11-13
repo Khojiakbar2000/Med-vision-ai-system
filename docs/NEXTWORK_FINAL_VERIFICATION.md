@@ -36,7 +36,7 @@ COMPLETE below means the stated implementation and its relevant automated criter
 | O01 | Optional: Secret Mission denied agent read and browser access | UNVERIFIED | Optional challenge not attempted because AGENTS forbids accessing protected folders. User may independently inspect active permission rules; never send scan data. |
 | O02 | Optional: pause/cleanup local resources | COMPLETE | Synthetic browser and/or unit evidence below; file/function mapping in completion plan. |
 | X01 | Existing extension outside tutorial: enhanced multi-frame, pan/zoom | COMPLETE | Synthetic browser and/or unit evidence below; file/function mapping in completion plan. |
-| X02 | Advanced outside scope: AI diagnosis/RAG/training | COMPLETE | No AI processing services introduced. Excluded from tutorial acceptance. |
+| X02 | Advanced outside scope: AI diagnosis/RAG/training | COMPLETE | Diagnosis, RAG, and training remain excluded from tutorial acceptance. A separate experimental local segmentation workflow is in progress; see BRAIN_TUMOR_AI_PLAN.md. |
 
 ## Commands actually executed in this audit run
 
@@ -75,7 +75,7 @@ Synthetic screenshots are outside the repository:
 - The literal deid default policy can remove image-class/series UIDs needed by the viewer. The existing compatible pydicom copy remains in place, with class/transfer syntax retained and instance/reference UIDs remapped. This preserves working code and the intended separate-copy/audit behavior, but is not a claim that the literal deid command reproduces a renderable copy. The pinned deid tool remains available for the tutorial workflow in a separate user Terminal.
 - Header scrub is best effort. Pixels, unusual attributes, clinical context, filenames of originals and complete DICOM confidentiality-profile compliance are not certified. `PatientIdentityRemoved=YES` records a header operation, not a guarantee about pixels.
 - Native Explicit VR Little Endian is verified with synthetic MR fixtures; native Implicit VR Little Endian is verified with the public structural T1 MR series. Bundled codecs do not establish compressed-syntax verification. Tilted/sheared, duplicate-position, irregularly spaced or missing-geometry inputs are rejected. Missing slices at perfectly regular intervals cannot be detected.
-- Native Safari/GPU behavior remains unverified; real anatomy is verified in Chrome. 3D is experimental. No AI diagnosis/RAG/training is implemented.
+- Native Safari/GPU behavior remains unverified; real anatomy is verified in Chrome. 3D is experimental. AI segmentation is a separate experimental research workflow and has not been validated with real pretrained weights or anatomical data; see BRAIN_TUMOR_AI_PLAN.md.
 - Earlier dependency audit found 10 affected packages (4 moderate, 6 high). No incompatible forced downgrade was applied. This is a recorded security limitation, not a clean-security claim.
 
 ## Exact manual acceptance steps

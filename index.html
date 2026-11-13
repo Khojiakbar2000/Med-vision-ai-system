@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; img-src 'self' blob: data:; worker-src 'self' blob:; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' blob:; img-src 'self' blob: data:; worker-src 'self' blob:; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'" />
     <meta name="theme-color" content="#10151b" />
     <meta name="description" content="A local-first educational DICOM research viewer." />
     <title>Private DICOM Explorer</title>
@@ -20,6 +20,39 @@
           <button id="folder-button" class="folder-button" type="button" disabled><span aria-hidden="true">＋</span> Upload DICOM folder</button>
           <input id="folder-input" class="folder-input" type="file" webkitdirectory directory multiple aria-label="Choose a local DICOM folder" />
         </section>
+        <section class="ai-panel" aria-labelledby="ai-heading">
+          <div class="ai-panel-heading"><div><div class="eyebrow">LOCAL RESEARCH INFERENCE</div><h2 id="ai-heading">Brain MRI segmentation</h2><p>MONAI BraTS SegResNet · runs on this computer through the local service</p></div><div class="ai-actions"><button id="ai-public-sample-button" class="tool-button" type="button" hidden>Load public sample result · development only</button><button id="ai-select-button" class="folder-button secondary" type="button">Choose 4 MRI volumes</button></div></div>
+          <input id="ai-input" class="folder-input" type="file" accept=".nii,.nii.gz" multiple aria-label="Choose four local brain MRI NIfTI volumes" />
+          <div id="ai-assignment" class="ai-assignment" hidden>
+            <div class="sequence-select"><label for="ai-t1c">T1c</label><select id="ai-t1c" aria-label="Assign T1c volume"></select></div>
+            <div class="sequence-select"><label for="ai-t1">T1</label><select id="ai-t1" aria-label="Assign T1 volume"></select></div>
+            <div class="sequence-select"><label for="ai-t2">T2</label><select id="ai-t2" aria-label="Assign T2 volume"></select></div>
+            <div class="sequence-select"><label for="ai-flair">FLAIR</label><select id="ai-flair" aria-label="Assign FLAIR volume"></select></div>
+            <button id="ai-run-button" class="tool-button ai-run" type="button">Run local segmentation</button>
+          </div>
+          <div id="ai-results" class="ai-results" hidden></div>
+          <div id="ai-evaluation" class="ai-evaluation" hidden><label for="ai-reference-convention">Reference label convention</label><select id="ai-reference-convention" aria-label="Select reference mask label convention"><option value="" selected>Choose the documented convention</option><option value="brats_2018_2021">BraTS 2018/2021 or MONAI: 1 core, 2 edema, 4 enhancing</option><option value="brats_2023">BraTS 2023: 1 core, 2 edema, 3 enhancing</option><option value="msd_task01">MSD Task01: 1 edema, 2 non-enhancing, 3 enhancing</option></select><button id="ai-ground-truth-button" class="tool-button" type="button">Compare with reference mask</button><input id="ai-ground-truth-input" class="folder-input" type="file" accept=".nii,.nii.gz" aria-label="Choose a local ground-truth segmentation mask" /><div id="ai-metrics" class="ai-metrics" hidden><div class="toolbar-label">LOCAL RESEARCH METRICS</div><div id="ai-metric-grid" class="ai-metric-grid"></div></div></div>
+          <section class="rag-panel" aria-labelledby="rag-heading">
+            <div class="rag-panel-heading"><div><div class="eyebrow">CURATED LITERATURE RETRIEVAL</div><h3 id="rag-heading">Medical AI research assistant</h3><p id="rag-context-status">No active segmentation context. General research questions are available.</p><p id="rag-provider-disclosure" class="rag-provider-disclosure">Checking the configured local answer provider…</p></div><span id="rag-provider-badge" class="rag-local-badge">LOCAL · SOURCE CITED</span></div>
+            <div class="rag-suggestions" aria-label="Suggested research questions"><button type="button" data-rag-question="What is whole tumor segmentation and how do WT, TC, and ET differ?" disabled>WT, TC, and ET</button><button type="button" data-rag-question="What does the Dice score measure, and how is it different from IoU?" disabled>Dice and IoU</button><button type="button" data-rag-question="How is predicted tumor volume calculated from the MRI voxel spacing?" disabled>Volume calculation</button><button type="button" data-rag-question="What are the limitations of the current MONAI segmentation model?" disabled>Model limitations</button></div>
+            <form id="rag-form" class="rag-form"><label class="sr-only" for="rag-question">Ask a research question</label><textarea id="rag-question" rows="2" maxlength="1000" placeholder="Ask about segmentation methods, metrics, or this study…"></textarea><button id="rag-submit" class="folder-button secondary" type="submit" disabled>Ask locally</button></form>
+            <div id="rag-status" class="rag-status" role="status" aria-live="polite">Answers use retrieved research sources; see the provider disclosure above.</div>
+            <div id="rag-answer" class="rag-answer" hidden></div>
+            <p class="rag-disclaimer">Educational and research use only. Not for diagnosis or treatment decisions.</p>
+          </section>
+          <div id="ai-status" class="ai-status" role="status" aria-live="polite">Model outputs are unconfirmed research predictions. MRI files are sent only to the loopback service after you start analysis.</div>
+        </section>
+        <details id="research-evaluation" class="research-evaluation">
+          <summary><span><span class="eyebrow">EXPERIMENTS · LOCAL RESULTS ONLY</span><strong>Research evaluation dashboard</strong></span><span class="research-summary-note">No model controls · no files leave this browser</span></summary>
+          <p>Load JSON result files created by the local evaluation CLI. These are research measurements; case aliases are ordinal and must refer to the same manifest order for paired comparison.</p>
+          <div class="research-loaders">
+            <label>Baseline results<input id="research-baseline-file" type="file" accept="application/json,.json"></label>
+            <label>Candidate results<input id="research-candidate-file" type="file" accept="application/json,.json"></label>
+          </div>
+          <div id="research-evaluation-status" role="status" aria-live="polite">No evaluation results loaded.</div>
+          <div id="research-evaluation-content" class="research-evaluation-content" hidden></div>
+          <small>Independent validation and fine-tuned model improvement are not established by loading results or passing software tests.</small>
+        </details>
         <section class="toolbar" aria-label="Viewer tools">
           <div class="tool-group"><span class="toolbar-label">MPR TOOLS</span><button id="window-button" class="tool-button active" type="button" disabled><span>◐</span> Window / Level</button><button id="ruler-button" class="tool-button" type="button" disabled><span>↔</span> Distance</button></div>
           <div class="tool-group preset-group"><label for="preset-select" class="toolbar-label">VOLUME PRESET</label><select id="preset-select" disabled aria-label="Volume rendering preset"></select><span class="gesture-hint">Wheel: slices · Middle drag: pan · Right drag: zoom</span></div>
@@ -36,7 +69,7 @@
             <div class="stat"><span>Modality</span><strong id="stat-modality">—</strong></div><div class="stat"><span>Selected slices</span><strong id="stat-slices">—</strong></div><div class="stat"><span>Matrix</span><strong id="stat-matrix">—</strong></div><div class="stat"><span>Pixel spacing</span><strong id="stat-spacing">—</strong></div><div class="stat"><span>Slice thickness</span><strong id="stat-thickness">—</strong></div>
           </div><p class="stats-note">Only modality and image geometry are shown. Identifiers, dates, UIDs, and source filenames stay out of the interface.</p></aside>
         </section>
-        <footer><span><strong>Educational and research use only.</strong> Not for diagnosis or treatment decisions.</span><span>Files are selected locally in your browser. This app has no upload or telemetry service.</span></footer>
+        <footer><span><strong>Educational and research use only.</strong> Not for diagnosis or treatment decisions.</span><span>DICOM viewing stays in the browser. AI inputs are processed by the local loopback service only.</span></footer>
       </main>
     </div>
     <script type="module" src="/src/main.js"></script>

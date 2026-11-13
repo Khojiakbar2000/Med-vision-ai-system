@@ -8,5 +8,12 @@ dist/
 private-scans/
 deidentified-scans/
 .claude/
+.env
+.env.*
+!.env.example
+.venv/
+backend/.venv/
+backend/.models/
+*.pt
 __pycache__/
 .pytest_cache/

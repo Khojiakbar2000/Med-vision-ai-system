@@ -1,0 +1,14 @@
+# Python 3.13 on Apple Silicon or CPU host. MONAI bundle architecture remains
+# compatible with the official checkpoint trained against MONAI 1.4 / torch 2.4.
+torch==2.15.0
+monai==1.6.1
+fastapi==0.121.3
+uvicorn==0.38.0
+nibabel==5.3.3
+numpy==2.2.6
+scipy==1.16.3
+python-multipart==0.0.20
+pydantic==2.12.4
+httpx==0.28.1
+pypdf==7.0.1
+pydicom==3.0.2
