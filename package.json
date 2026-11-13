@@ -7,14 +7,22 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node --test tests/*.test.js && python3 -m unittest discover -s tests -p test_*.py",
-    "test:browser": "node tests/browser/render.mjs"
+    "ai:serve": "cd backend && ../.venv/bin/python -m medvision_ai",
+    "ai:evaluate": "cd backend && ../.venv/bin/python -m medvision_ai.research_cli evaluate",
+    "ai:train": "cd backend && ../.venv/bin/python -m medvision_ai.research_cli train",
+    "ai:compare": "cd backend && ../.venv/bin/python -m medvision_ai.research_cli compare",
+    "test": "node --test tests/*.test.js && .venv/bin/python -m unittest discover -s tests -p test_*.py",
+    "test:ai": ".venv/bin/python -m unittest discover -s tests -p test_brain_tumor_ai.py",
+    "test:browser": "node tests/browser/render.mjs",
+    "test:rag-browser": "node tests/browser/rag-assistant.mjs"
   },
   "dependencies": {
     "@cornerstonejs/core": "5.15.2",
     "@cornerstonejs/dicom-image-loader": "5.15.2",
+    "@cornerstonejs/nifti-volume-loader": "^5.15.2",
     "@cornerstonejs/tools": "5.15.2",
     "@cornerstonejs/utils": "5.15.2",
+    "@kitware/vtk.js": "^36.4.1",
     "dicom-parser": "1.8.21",
     "events": "3.3.0"
   },

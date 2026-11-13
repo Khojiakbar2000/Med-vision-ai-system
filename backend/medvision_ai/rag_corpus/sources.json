@@ -1,0 +1,44 @@
+[
+  {
+    "source_id": "brats-regions",
+    "title": "Advancing Precision: A Comprehensive Review of MRI Segmentation Datasets from BraTS Challenges (2012–2025)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11945730/",
+    "license": "CC BY 4.0",
+    "file": "brats-regions.md"
+  },
+  {
+    "source_id": "monai-bundle",
+    "title": "MONAI brats_mri_segmentation model bundle",
+    "url": "https://github.com/Project-MONAI/model-zoo/tree/dev/models/brats_mri_segmentation",
+    "license": "Apache-2.0 bundle license",
+    "file": "monai-bundle.md"
+  },
+  {
+    "source_id": "msd-task01",
+    "title": "Medical Segmentation Decathlon Task01 Brain Tumour metadata",
+    "url": "https://medicaldecathlon.com/",
+    "license": "Dataset CC BY-SA 4.0; check source dataset terms",
+    "file": "msd-task01.md"
+  },
+  {
+    "source_id": "dice-metric",
+    "title": "MONAI DiceMetric documentation",
+    "url": "https://monai.readthedocs.io/en/latest/metrics.html",
+    "license": "MONAI documentation",
+    "file": "dice-metric.md"
+  },
+  {
+    "source_id": "jaccard-metric",
+    "title": "scikit-learn Jaccard similarity documentation",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.jaccard_score.html",
+    "license": "scikit-learn documentation",
+    "file": "jaccard-metric.md"
+  },
+  {
+    "source_id": "nibabel-affine",
+    "title": "NiBabel affine and voxel geometry documentation",
+    "url": "https://nipy.org/nibabel/reference/nibabel.affines.html",
+    "license": "NiBabel documentation",
+    "file": "geometry.md"
+  }
+]

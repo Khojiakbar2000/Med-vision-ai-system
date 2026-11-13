@@ -34,7 +34,7 @@ This matrix distinguishes source inspection from executed proof. COMPLETE never 
 | O01 | Optional: Secret Mission denied agent read and browser access | AGENTS.md rules exist | UNVERIFIED | Do not attempt protected access; user reviews permission summary independently | Manual D; not completion blocker |
 | O02 | Optional: pause/cleanup local resources | README.md run instructions | COMPLETE | Existing extension preserved / instructions documented. | Executed synthetic browser/unit proof; see NEXTWORK_FINAL_VERIFICATION.md. |
 | X01 | Existing extension outside tutorial: enhanced multi-frame, pan/zoom | expandFrames; PanTool; ZoomTool | COMPLETE | Existing extension preserved / instructions documented. | Executed synthetic browser/unit proof; see NEXTWORK_FINAL_VERIFICATION.md. |
-| X02 | Advanced outside scope: AI diagnosis/RAG/training | No processing services implemented | COMPLETE | Excluded from baseline; no AI feature work | Source review |
+| X02 | Advanced outside scope: AI diagnosis/RAG/training | Experimental local research segmentation now exists as a separate, non-clinical feature | COMPLETE | Diagnosis, RAG, and training remain excluded from the tutorial baseline; experimental segmentation status is tracked separately in BRAIN_TUMOR_AI_PLAN.md | Source review |
 
 ## Dependency-ordered milestones
 

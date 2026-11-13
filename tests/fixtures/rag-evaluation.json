@@ -1,0 +1,8 @@
+[
+  {"question":"How do whole tumor, tumor core, and enhancing tumor differ?","supporting_sources":["brats-regions"],"expected_fact":"Whole tumor (WT) includes"},
+  {"question":"What do Dice and IoU measure?","supporting_sources":["dice-metric","jaccard-metric"],"expected_fact":"intersection"},
+  {"question":"What modalities and normalization does this MONAI bundle use?","supporting_sources":["monai-bundle"],"expected_fact":"T1 contrast-enhanced"},
+  {"question":"What are the Task01 label values and region mappings?","supporting_sources":["msd-task01"],"expected_fact":"0 background"},
+  {"question":"How do voxel spacing and affine determine physical tumor volume?","supporting_sources":["nibabel-affine"],"expected_fact":"absolute determinant"},
+  {"question":"Does one Dice score prove clinical accuracy?","supporting_sources":["brats-regions","msd-task01"],"expected_fact":"not a probability of correctness"}
+]

@@ -1,0 +1,1 @@
+The Jaccard index, also called intersection over union (IoU), is the intersection of prediction and reference label sets divided by their union. IoU is 1 for identical masks and 0 for disjoint masks. It describes spatial overlap; it does not establish diagnostic accuracy or clinical utility. Report the region definition and dataset convention alongside the score.
